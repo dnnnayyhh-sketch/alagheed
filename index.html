@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مفروشات الأغيد | Tartus</title>
+  <!-- خط تجوال وأيقونات FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0b;
+      --card-bg: rgba(22, 24, 22, 0.85);
+      --gold-primary: #c59d74;
+      --gold-light: #e5c39e;
+      --gold-gradient: linear-gradient(135deg, #dfb88e 0%, #c59d74 50%, #9e754c 100%);
+      --green-olive: #677561;
+      --border-vip: 1px solid rgba(197, 157, 116, 0.25);
+      --text-main: #f5f5f5;
+      --text-muted: #a3a3a3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(103, 117, 97, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(197, 157, 116, 0.08) 0%, transparent 50%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 1. اللوجو أعلى الصفحة بالعرض كاملاً */
+    .top-banner {
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid rgba(197, 157, 116, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .top-banner img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* الحاوية الرئيسية للمحتوى */
+    .main-container {
+      width: 100%;
+      max-width: 580px;
+      padding: 20px 14px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* كرت الترحيب والتعريف */
+    .brand-intro {
+      background: var(--card-bg);
+      border: var(--border-vip);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .brand-slogan {
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .location-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* أزرار الاتصال السريع VIP */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn-vip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 12px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+    }
+
+    .btn-gold {
+      background: var(--gold-gradient);
+      color: #121212;
+    }
+
+    .btn-vip:hover, .btn-vip:active {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* عنوان قسم الكتالوج */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-top: 6px;
+    }
+
+    /* 2. الأقسام بشكل شبكي أفقي مع مساحات الصور */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border: var(--border-vip);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    .category-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-3px);
+    }
+
+    .category-img-box {
+      width: 100%;
+      height: 125px;
+      background: #151815;
+      overflow: hidden;
+    }
+
+    .category-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s ease;
+    }
+
+    .category-card:hover .category-img-box img {
+      transform: scale(1.06);
+    }
+
+    .category-details {
+      padding: 12px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .category-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .btn-order-item {
+      background: rgba(197, 157, 116, 0.12);
+      border: 1px solid rgba(197, 157, 116, 0.3);
+      color: var(--gold-light);
+      padding: 7px 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: 0.2s;
+    }
+
+    .btn-order-item:hover {
+      background: var(--gold-gradient);
+      color: #111;
+    }
+
+    /* كرت العنوان مع رابط الخريطة الجديد والملاحظة */
+    .map-card {
+      background: rgba(103, 117, 97, 0.12);
+      border: 1px solid rgba(197, 157, 116, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .map-desc {
+      font-size: 0.88rem;
+      color: #e5e5e5;
+      line-height: 1.5;
+    }
+
+    .map-desc strong {
+      color: var(--gold-light);
+    }
+
+    .btn-map-action {
+      background: var(--gold-gradient);
+      color: #111;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+
+    .btn-map-action:hover {
+      filter: brightness(1.15);
+    }
+
+    /* السوشيال ميديا */
+    .social-section {
+      background: var(--card-bg);
+      border: var(--border-vip);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .social-title {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(197, 157, 116, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 1.15rem;
+      transition: 0.3s;
+    }
+
+    .social-btn:hover {
+      background: var(--gold-gradient);
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- اللوجو بالأعلى باسم الملف المباشر من جهازك -->
+  <header class="top-banner">
+    <img src="IMG_20261019_205618_668.png" alt="مفروشات الأغيد">
+  </header>
+
+  <div class="main-container">
+
+    <!-- النبذة -->
+    <div class="brand-intro">
+      <p class="brand-slogan">✨ فخامة أثاثك تتحدث عنك، وجودة تصنيعنا تتحدث عنا ✨</p>
+      <div class="location-note">
+        <i class="fa-solid fa-location-dot" style="color: var(--gold-primary);"></i>
+        <span>طرطوس - المنطقة الصناعية - على طول الخط قبال شركة مراسيل</span>
+      </div>
+    </div>
+
+    <!-- أزرار VIP السريعة -->
+    <div class="quick-actions">
+      <!-- رقم الواتساب لتلقي الطلبات -->
+      <a href="https://wa.me/963986691940" target="_blank" class="btn-vip btn-green">
+        <i class="fa-brands fa-whatsapp fa-lg"></i>
+        <span>طلب واتساب</span>
+      </a>
+
+      <!-- رقم الاتصال المباشر -->
+      <a href="tel:+963968746627" class="btn-vip btn-gold">
+        <i class="fa-solid fa-phone"></i>
+        <span>اتصال فوري</span>
+      </a>
+    </div>
+
+    <!-- كتالوج الأقسام بنظام أفقي -->
+    <div class="section-header">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>كتالوج الموديلات والتصاميم</span>
+    </div>
+
+    <div class="catalog-grid">
+
+      <!-- أطقم كنب -->
+      <div class="category-card">
+        <div class="category-img-box">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop&q=80" alt="كنب">
+        </div>
+        <div class="category-details">
+          <span class="category-title">أطقم كنب وصالونات</span>
+          <a href="https://wa.me/963986691940?text=مرحباً،%20أود%20الاستفسار%20عن%20أطقم%20الكنب%20والصالونات" target="_blank" class="btn-order-item">
+            <i class="fa-brands fa-whatsapp"></i> استفسار وطلب
+          </a>
+        </div>
+      </div>
+
+      <!-- غرف نوم ماستر -->
+      <div class="category-card">
+        <div class="category-img-box">
+          <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=500&auto=format&fit=crop&q=80" alt="غرف نوم">
+        </div>
+        <div class="category-details">
+          <span class="category-title">غرف نوم ماستر (أهل)</span>
+          <a href="https://wa.me/963986691940?text=مرحباً،%20أود%20الاستفسار%20عن%20غرف%20النوم%20الماستر" target="_blank" class="btn-order-item">
+            <i class="fa-brands fa-whatsapp"></i> استفسار وطلب
+          </a>
+        </div>
+      </div>
+
+      <!-- غرف نوم أولاد -->
+      <div class="category-card">
+        <div class="category-img-box">
+          <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=500&auto=format&fit=crop&q=80" alt="غرف أولاد">
+        </div>
+        <div class="category-details">
+          <span class="category-title">غرف نوم أولاد وشبابية</span>
+          <a href="https://wa.me/963986691940?text=مرحباً،%20أود%20الاستفسار%20عن%20غرف%20نوم%20الأولاد" target="_blank" class="btn-order-item">
+            <i class="fa-brands fa-whatsapp"></i> استفسار وطلب
+          </a>
+        </div>
+      </div>
+
+      <!-- طاولات سفرة -->
+      <div class="category-card">
+        <div class="category-img-box">
+          <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&auto=format&fit=crop&q=80" alt="طاولات سفرة">
+        </div>
+        <div class="category-details">
+          <span class="category-title">طاولات سفرة فاخرة</span>
+          <a href="https://wa.me/963986691940?text=مرحباً،%20أود%20الاستفسار%20عن%20طاولات%20السفرة" target="_blank" class="btn-order-item">
+            <i class="fa-brands fa-whatsapp"></i> استفسار وطلب
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- كرت العنوان مع رابط الخريطة الجديد والملاحظة -->
+    <div class="map-card">
+      <div class="map-desc">
+        📍 <strong>موقعنا الجديد:</strong> طرطوس - المنطقة الصناعية - على طول الخط <strong>قبال شركة مراسيل</strong> مباشرة.
+      </div>
+      <a href="https://maps.app.goo.gl/dsajqVk9DFEQKkt8A" target="_blank" class="btn-map-action">
+        <i class="fa-solid fa-diamond-turn-right"></i>
+        <span>فتح موقع المعرض على الخريطة</span>
+      </a>
+    </div>
+
+    <!-- وسائل التواصل الاجتماعي -->
+    <div class="social-section">
+      <div class="social-title">تابعونا وتواصلوا معنا</div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1CLwTB68zi/" target="_blank" class="social-btn" title="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/alagheed_furniture?obrf=MTJwm2l3anJvcXl1cA==" target="_blank" class="social-btn" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/963986691940" target="_blank" class="social-btn" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      تصميم وتطوير بواسطة <strong>أيهم الدنحة</strong> &copy; 2026
+    </footer>
+
+  </div>
+
+</body>
+  </html>
+  
